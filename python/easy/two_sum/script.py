@@ -5,7 +5,7 @@ def twoSum(nums, target):
         partial = target - nums[i]
 
         if(partial in hmap.keys()):
-            return [nums[i], partial]
+            return [hmap[partial], i]
 
         hmap[nums[i]] = i
 
