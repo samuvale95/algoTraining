@@ -1,23 +1,19 @@
 def lengthOfLongestSubstring(s:str) -> int:
     hmap={}
-    partial=''
-    res=''
-    i=0
+    res,l=0,0
 
-    while i < len(s):
-        if(s[i] in hmap.keys()):
-            if(len(partial)>len(res)):
-                res=partial
-            partial=''
-            i=hmap[s[i]]+1
-            hmap={}
+    for r in range(len(s)):
+        if(s[r] in hmap):
+            if(l>hmap[s[r]]):
+                res=max(res,r-l+1)
+            else:
+                l=hmap[s[r]]+1
         else:
-            hmap[s[i]] = i
-            partial+=s[i]
-            i+=1
-    if(len(partial)>len(res)):
-        res=partial
-    return len(res)
+            res=max(res,r-l+1)
+        hmap[s[r]]=r
+    return res
+
+
 
 def main():
     print(lengthOfLongestSubstring("abcabcbb"))
