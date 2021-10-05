@@ -21,6 +21,18 @@ class Solution:
             pos[len(pos)-n-1].next=pos[len(pos)-n-1].next.next
         return head
 
+    def removeNthFromEnd2(self, head, n):
+    dummy = ListNode(0)
+    dummy.next = head
+    fast = slow = dummy
+    for _ in xrange(n):
+        fast = fast.next
+    while fast and fast.next:
+        fast = fast.next
+        slow = slow.next
+    slow.next = slow.next.next
+    return dummy.next
+
 def main():
     sol = Solution()
     print(sol.removeNthFromEnd(ListNode(1,ListNode(2)), 2))
